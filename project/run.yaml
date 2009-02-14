@@ -1,0 +1,9 @@
+main: 
+  main-class: org.blob.Run
+  
+  classpath: ["etc/"]
+  lib_path: ["lib/", "dist/"]
+
+  chdir: ./
+  args: "args: \"-Xms512m -Xmx512m\""
+  

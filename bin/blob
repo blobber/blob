@@ -1,0 +1,76 @@
+#!/usr/bin/ruby 
+
+require "rubygems"
+require "log4r"
+require "yaml"
+
+include Log4r
+
+$log = Logger.new('run')
+$log.outputters = Outputter.stdout 
+
+#
+# OVERRIDDEN TASKS
+#
+
+class RunApp
+  
+  ### START - REMOVE OR REPLACE ####
+  def self.your_task(*argv)
+    puts "Overriden task goes here"
+  end
+  ### END - REMOVE OR REPLACE ####
+  
+  def self.method_missing(id, *data)
+    conf = YAML::load(File.open("project/run.yaml"))
+    task = conf[id.to_s].nil? ? "main" : id.to_s
+    args = conf[id.to_s].nil? ? [id.to_s] + data[0] : data[0]
+    
+    run task, conf, "#{ENV['JAVA_HOME'] ||= "/opt/java"}/bin/java -cp #{libs conf[task]['classpath'], conf[task]['lib_path']} #{conf[task]['main-class']} #{args.join(" ")}"
+  end
+  
+end
+
+#
+# UTIL
+#
+
+def libs(classpath, lib_dirs)
+  lib_path = "" 
+  
+  classpath.each { |dir| lib_path << "#{dir}:" }
+  lib_dirs.each do |dir|
+    Dir.glob("#{dir}#{dir[-1,1] == '/' ? '' : '/'}*.jar").each { |jar| lib_path << "#{jar}:" }
+  end
+  
+  return lib_path 
+end
+
+def run(name, conf, cmd)
+  $log.info  "Starting #{name}..."
+  $log.debug "dir: #{conf[name]['chdir']}"
+  $log.debug "cmd: #{cmd}"
+  
+  Dir.chdir(conf[name]['chdir']) unless conf[name]['chdir'].nil?
+  pid = fork do
+    exec cmd
+  end
+  Process.waitpid(pid, 0)
+end
+
+def usage
+  puts "./bin/run.rb [application] ...arguments passed to application..."
+  exit(1)
+end
+
+#
+# ALL STARTS HERE
+#
+
+begin
+  argv = ARGV.empty? ? ["main"] : ARGV
+  RunApp.send(argv[0], argv[1, argv.size - 1]) 
+rescue Exception => ex
+  puts "#{ex.to_s} ==>"
+  puts ex.backtrace.join("\n")
+end
