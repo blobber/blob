@@ -12,7 +12,7 @@ Java.classpath << "/opt/hadoop/conf"
 ENV['JAVA_OPTS'] ||= '-Xms512m -Xmx512m -ea'
 
 # SET REPOS
-repositories.remote << repositories.remote << 'https://admin:r3p0m4st3r@ben.vast.com/archiva/repository/internal'
+repositories.remote << 'https://admin:r3p0m4st3r@ben.vast.com/archiva/repository/internal'
  
 desc 'Blob - Distributed Something :)' 
 define 'blob' do  
