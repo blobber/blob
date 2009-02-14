@@ -1,10 +1,21 @@
 package org.blob.tasks.util;
 
-/**
- * User: Igor Bogicevic
- * Date: Feb 14, 2009
- * Time: 6:12:58 PM
- * Copyright: Vast.com (2008)
- */
+import org.apache.log4j.Logger;
+
 public class ExceptionUtil {
+  protected static final Logger logger = Logger.getLogger(ExceptionUtil.class);
+
+  //
+  // INTERFACE
+  //
+
+  public static void log(Exception e) {
+    logger.error("===================== EXCEPTION LOG START =====================");
+    logger.error("Message: " + e.getMessage());
+
+    for(StackTraceElement element: e.getStackTrace()) {
+      logger.error(element.toString());
+    }
+    logger.error("=====================  EXCEPTION LOG END  =====================");
+  }
 }

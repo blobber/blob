@@ -1,10 +1,7 @@
 package org.blob.tasks;
 
-/**
- * User: Igor Bogicevic
- * Date: Feb 14, 2009
- * Time: 6:02:33 PM
- * Copyright: Vast.com (2008)
- */
+import org.blob.tasks.config.Config;
+
 public interface TaskIF {
+  public abstract void run(String app, Config conf) throws Exception;
 }

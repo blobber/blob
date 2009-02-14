@@ -1,10 +1,16 @@
 package org.blob.tasks.kmeans;
 
-/**
- * User: Igor Bogicevic
- * Date: Feb 14, 2009
- * Time: 6:24:59 PM
- * Copyright: Vast.com (2008)
- */
-public class KMeansTaskFactory {
+import org.blob.tasks.TaskFactoryIF;
+import org.blob.tasks.TaskIF;
+
+public class KMeansTaskFactory implements TaskFactoryIF {
+  public static String ID = "k-means";
+
+  //
+  // FACTORY
+  //
+
+  public TaskIF getTask() {
+    return new KMeansTask();
+  }
 }
