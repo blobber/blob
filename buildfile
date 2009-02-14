@@ -82,7 +82,8 @@ define 'blob' do
     'javax.xml:stax-api:jar:1.0.1'                                   => { "dir" => ["lib/"] },
     'org.apache.commons.httpclient:commons-httpclient:jar:3.1'       => { "dir" => ["lib/"] },
     'org.apache.commons.csv:commons-csv:jar:1.0-SNAPSHOT'            => { "dir" => ["lib/"] },
-    'org.apache.mahout:mahout-core:jar:0.2-SNAPSHOT'                 => { "dir" => ["lib/"] }
+    'org.apache.mahout:mahout-core:jar:0.2-SNAPSHOT'                 => { "dir" => ["lib/"] },
+    'org.jyaml:jyaml:jar:1.3'                                        => { "dir" => ["lib/"] },
   }
    
   #  

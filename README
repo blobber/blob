@@ -1,1 +1,52 @@
 == bLoBbEr : a huge blob of random code,research and dev stuff for fun and profit ==
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+- Running Task
+
+We're using hadoop as a java wrapper for both hadoop and non-hadoop tasks so for that reason you need to either have 
+HADOOP_HOME variable being set to your hadoop home, or it will try a default location "/opt/hadoop". "Atom" of each
+run is Task/Application and each Task/Application actually represents one java package with 2 basic classes i.e.:
+
+public class KMeansTaskFactory implements TaskFactoryIF {
+....
+}
+
+public class KMeansTask extends Task implements TaskIF {
+....
+}
+
+Certain application/task can be started with:
+
+./bin/blob -a [application/task name] -c [yaml config file]
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+- Configuration classes 
+
+Config class extends the ConfigNode class and basically represents the tree structure of ConfigNodes which is being 
+created from yaml structure of configuration file passed to this task, so in example:
+
+  kmeans:
+	  test1: aa
+	  test2: bb
+	
+will be created to following class structure
+
+  Config(root class)
+	  |
+	  |--ConfigNode(key => "kmeans", val => "")
+	       |
+	       |--ConfigNode(key => "test", val => "aa")
+	       |
+	       |--ConfigNode(key => "test2", val => "bb")
+	
+Config also supports iterating over it's elements, as well as very simplified xpath-like query language:
+
+	config.get("kmeans/test").val => "aa"
+	config.get("kmeans").val => ""

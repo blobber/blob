@@ -26,7 +26,7 @@ class RunApp
     task = conf[id.to_s].nil? ? "main" : id.to_s
     args = conf[id.to_s].nil? ? [id.to_s] + data[0] : data[0]
     
-    run task, conf, "#{ENV['JAVA_HOME'] ||= "/opt/java"}/bin/java -cp #{libs conf[task]['classpath'], conf[task]['lib_path']} #{conf[task]['main-class']} #{args.join(" ")}"
+    run task, conf, "#{ENV['HADOOP_HOME'] ||= "/opt/hadoop"}/bin/hadoop -cp #{libs conf[task]['classpath'], conf[task]['lib_path']} #{conf[task]['main-class']} #{args.join(" ")}"
   end
   
 end
