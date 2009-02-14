@@ -1,7 +1,0 @@
-server:
-  master:
-    host: localhost
-    port: 32323
-  slave:
-    host: localhost
-    port: 23232
