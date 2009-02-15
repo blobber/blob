@@ -1,9 +1,10 @@
 package org.blob.tasks.util;
 
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 public class ExceptionUtil {
-  protected static final Logger logger = Logger.getLogger(ExceptionUtil.class);
+  protected static final Logger logger = LoggerFactory.getLogger(ExceptionUtil.class);
 
   //
   // INTERFACE

@@ -5,12 +5,13 @@ import org.blob.tasks.TaskIF;
 import org.blob.tasks.config.Config;
 import org.blob.tasks.kmeans.KMeansTaskFactory;
 import org.blob.tasks.util.ExceptionUtil;
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import java.util.HashMap;
 
 public class Run {
-  Logger logger = Logger.getLogger(this.getClass());
+  Logger logger = LoggerFactory.getLogger(this.getClass());
 
   public static void main(String[] args) {
     try {
