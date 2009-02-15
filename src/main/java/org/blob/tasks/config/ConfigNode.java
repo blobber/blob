@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 
-public class ConfigNode {
+public class ConfigNode implements Iterable<ConfigNode>, Iterator<ConfigNode> {
   public String key = null;
   public String val = null;
 

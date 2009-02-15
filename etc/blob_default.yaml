@@ -1,2 +1,3 @@
 kmeans:
-    test: "aa"
+  test1: "aa"
+  test2: "bb"

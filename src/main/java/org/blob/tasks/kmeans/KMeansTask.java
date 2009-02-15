@@ -7,6 +7,10 @@ import org.blob.tasks.config.ConfigNode;
 
 public class KMeansTask extends Task implements TaskIF {
   public void run(String app, Config conf) throws Exception {
-    System.out.println(conf.get("kmeans/test").val);  
+
+    for (ConfigNode node: conf.get("kmeans")) {
+      System.out.println(node.key + " :: " + node.val);
+    }
+      
   }
 }
